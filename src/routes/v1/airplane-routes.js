@@ -28,5 +28,12 @@ router.post('/',
         AirplaneController.createAirplane
 );
 
+/**
+ * DELETE
+ * /api/v1/airplane/:id
+ */
+router.delete('/:id', 
+        AirplaneController.destroyAirplane
+);
   
 module.exports = router;
