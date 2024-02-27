@@ -13,6 +13,22 @@ router.post('/',
 );
 
 /**
+ * GET
+ * /api/v1/cities
+ */
+router.get('/', 
+        CityController.getCity
+);
+
+/**
+ * GET
+ * /api/v1/cities/:id
+ */
+router.get('/:id', 
+        CityController.getCityById
+);
+
+/**
  * DELETE
  * /api/v1/cities/:id
  */

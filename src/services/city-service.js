@@ -21,6 +21,27 @@ async function createCity(data) {
     }
 }
 
+async function getCity() {
+    try {
+        const city = await cityRepository.getAll();
+        return city;
+    } catch (error) {
+        throw new AppError('Cannot fetch data of all the cities', StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
+async function getCityById(id){
+    try {
+        const city = await cityRepository.get(id);
+        return city;
+    } catch (error) {
+        if(error.statusCode == StatusCodes.NOT_FOUND){
+            throw new AppError('The city you requested is not present', error.statusCode);
+        }
+        throw new AppError('Cannot fetch data of city', StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 async function destroyCity(id) {
     try {
         const response = await cityRepository.destroy(id);
@@ -47,6 +68,8 @@ async function updateCity(id, data) {
 
 module.exports = {
     createCity,
+    getCity,
+    getCityById,
     destroyCity,
     updateCity
 }
