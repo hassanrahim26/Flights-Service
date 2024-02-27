@@ -13,7 +13,7 @@ router.get('/',
 
 /**
  * GET
- * /api/v1/airplane/:id
+ * /api/v1/airplanes/:id
  */
 router.get('/:id', 
         AirplaneController.getAirplaneById
@@ -30,10 +30,18 @@ router.post('/',
 
 /**
  * DELETE
- * /api/v1/airplane/:id
+ * /api/v1/airplanes/:id
  */
 router.delete('/:id', 
         AirplaneController.destroyAirplane
 );
-  
+
+/**
+ * UPDATE
+ * /api/v1/airplanes/:id
+ */
+router.patch('/:id', 
+        AirplaneController.updateAirplane
+);
+
 module.exports = router;
