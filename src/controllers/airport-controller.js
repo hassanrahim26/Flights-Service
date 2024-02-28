@@ -94,7 +94,10 @@ async function updateAirport(req, res) {
     try {
         const airport = await AirportService.updateAirport(
             req.params.id, {
-            
+            name: req.body.name,
+            code: req.body.code,
+            address: req.body.address,
+            cityId: req.body.cityId
         });
         SuccessResponse.data = airport;
         return res
