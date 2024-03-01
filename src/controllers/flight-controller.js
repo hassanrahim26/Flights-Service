@@ -2,7 +2,6 @@ const { StatusCodes } = require('http-status-codes');
 
 const { FlightService } = require('../services/');
 const { SuccessResponse, ErrorResponse } = require('../utils/common');
-const { log } = require('winston');
 
 /**
  * POST: /flights
@@ -51,7 +50,7 @@ async function getAllFlights(req, res){
                 .status(StatusCodes.OK)
                 .json(SuccessResponse)
     } catch (error) {
-        //console.log(error);
+        console.log(error);
         ErrorResponse.error = error;
         return res
                 .status(error.statusCode)
