@@ -42,6 +42,10 @@ async function createFlight(req, res) {
     }
 };
 
+/**
+ * GET
+ * /flights/
+*/
 async function getAllFlights(req, res){
     try {
         const flights = await FlightService.getAllFlights(req.query);
@@ -58,7 +62,27 @@ async function getAllFlights(req, res){
     }
 }
 
+/**
+ * GET
+ * /flights/:id
+*/
+async function getFlightById(req, res){
+    try {
+        const flight = await FlightService.getFlightById(req.params.id);
+        SuccessResponse.data = flight;
+        return res
+                .status(StatusCodes.OK)
+                .json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res
+                .status(error.statusCode)
+                .json(ErrorResponse);
+    }
+};
+
 module.exports = {
     createFlight,
-    getAllFlights
+    getAllFlights,
+    getFlightById
 }
